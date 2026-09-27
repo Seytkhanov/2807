@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FOR HER — PRIVATE EDITION 🤍</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(135deg,#17121f,#3a2445,#17121f);color:#fff;min-height:100vh}
+button{font:inherit;cursor:pointer;border:0}.screen{display:none;min-height:100vh;padding:28px 18px}.screen.active{display:flex;align-items:center;justify-content:center}
+.card{width:min(720px,100%);background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:30px;box-shadow:0 20px 70px rgba(0,0,0,.35);backdrop-filter:blur(14px)}
+h1,h2{margin:0 0 12px}p{line-height:1.6;color:#eadfea}.muted{opacity:.7;font-size:14px}
+.input{width:100%;padding:16px;border-radius:16px;border:1px solid #ffffff25;background:#ffffff12;color:#fff;outline:none;margin:14px 0}
+.primary{width:100%;padding:15px;border-radius:16px;background:#f4c8dc;color:#241525;font-weight:800}
+.error{height:22px;color:#ffb2c9;text-align:center}
+.top{width:min(900px,100%);margin:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:22px}
+.tile{padding:22px 16px;border-radius:22px;background:#ffffff0e;border:1px solid #ffffff18;text-align:center;transition:.2s}.tile:hover{transform:translateY(-3px);background:#ffffff16}
+.emoji{font-size:34px;display:block;margin-bottom:8px}.sectionTitle{margin-top:28px}
+.back{background:#ffffff12;color:#fff;padding:10px 14px;border-radius:12px;margin-bottom:18px}
+.chat{display:flex;flex-direction:column;gap:10px;margin:20px 0}.msg{max-width:78%;padding:12px 15px;border-radius:18px;background:#ffffff12}.me{align-self:flex-end;background:#d8a9c6;color:#241525}.her{align-self:flex-start}.time{font-size:10px;opacity:.6;margin-top:4px}
+.memories{display:grid;grid-template-columns:1fr 1fr;gap:14px}.memory{overflow:hidden;border-radius:20px;background:#ffffff0d;border:1px solid #ffffff15}.memory img{width:100%;height:250px;object-fit:cover;display:block}.memory div{padding:14px}
+.boxWrap{text-align:center;padding:25px}.box{font-size:110px;transition:.4s}.box.open{transform:rotate(-5deg) scale(1.08)}
+.gift{display:none;margin-top:20px;padding:22px;border-radius:20px;background:#ffffff0e;border:1px solid #ffffff18}.gift.show{display:block}
+.moods button{margin:7px;padding:13px 15px;border-radius:16px;background:#ffffff12;color:#fff;border:1px solid #ffffff18}
+.moodResult{margin-top:18px;padding:20px;border-radius:20px;background:#ffffff0e;min-height:80px}
+.final{text-align:center;margin-top:28px;padding:28px;border-radius:24px;background:linear-gradient(135deg,#ffffff12,#f4c8dc18);border:1px solid #ffffff18}
+.small{font-size:13px;opacity:.72}
+@media(max-width:600px){.card{padding:22px}.memories{grid-template-columns:1fr}.memory img{height:320px}}
+</style>
+</head>
+<body>
+
+<section id="lock" class="screen active">
+<div class="card" style="text-align:center">
+<div style="font-size:55px">🔐</div>
+<h1>FOR HER</h1>
+<p>PRIVATE EDITION</p>
+<p class="muted">Бұл кішкентай әлем тек саған арналған 🤍<br>Кішкентай құпия есік бар.</p>
+<input id="pass" class="input" placeholder="Құпия сөз..." autocomplete="off">
+<button class="primary" onclick="unlock()">Ашу 🤍</button>
+<div id="err" class="error"></div>
+<p class="small">Hint: сендердің маңызды күндеріңді ойла 😉</p>
+</div>
+</section>
+
+<section id="home" class="screen">
+<div class="top">
+<div class="card">
+<div style="text-align:center">
+<div style="font-size:48px">🤍</div>
+<h1>БҮГІН — БІЗДІҢ КҮНІМІЗ</h1>
+<h2 style="font-size:28px">1 ЖЫЛ 2 АЙ 🥹❤️</h2>
+<p>«14 ай. Көптеген естелік. Мыңдаған әңгіме. Және әлі аяқталмаған біздің кішкентай хикаямыз…»</p>
+</div>
+<div class="final">
+<h2>🥹 Бүгінгі күнге арналған сөз</h2>
+<p>Бүгін мереке болғанымен, мен бұл жерді тек қуанышты сәттер үшін жасаған жоқпын.</p>
+<p><b>Егер мен сені ренжіткен болсам — кешір.</b> Менің мақсатым сені қинау да, өзімді ақтау да емес. Тек саған біздің бірге өткізген уақыттың мен үшін қаншалықты қымбат екенін көрсету.</p>
+<p>Сен қазір ренжіп отырсаң, оны бірден өзгертуге міндетті емессің. Асықпайсың. Бұл сыйлықтан ешқандай жауап күтпеймін. 🤍</p>
+</div>
+<h2 class="sectionTitle">💌 Бүгінгі арнайы бөлімдер</h2>
+<div class="grid">
+<button class="tile" onclick="show('anniversary')"><span class="emoji">❤️</span>1 жыл 2 ай</button>
+<button class="tile" onclick="show('chat')"><span class="emoji">💬</span>Біздің чат</button>
+<button class="tile" onclick="show('memories')"><span class="emoji">📸</span>Естеліктер</button>
+<button class="tile" onclick="show('box')"><span class="emoji">🎁</span>Сыйлық қорабы</button>
+<button class="tile" onclick="show('mood')"><span class="emoji">🌙</span>Көңіл-күйің</button>
+</div>
+<div class="final">
+<h2>🫶🏻 Бір ғана өтініш</h2>
+<p>Соңына дейін қарап шық. Сосын қалай сезінсең, солай сезін. Мен сенің сезіміңді құрметтеймін.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="anniversary" class="screen"><div class="card">
+<button class="back" onclick="show('home')">← Артқа</button>
+<div style="text-align:center">
+<div style="font-size:58px">❤️</div>
+<h2>1 ЖЫЛ 2 АЙ</h2>
+<p>14 ай бірге. 14 айлық кішкентай тарих.</p>
+</div>
+<div class="grid">
+<div class="tile"><span class="emoji">01</span><b>Бәрі басталғаны</b><br><span class="small">Бір кезде жай ғана таныстық. Кейін ол таныстық біз үшін ерекше нәрсеге айналды.</span></div>
+<div class="tile"><span class="emoji">02</span><b>Күлкілер</b><br><span class="small">Бірге күлген қарапайым сәттердің өзі қазір естелік.</span></div>
+<div class="tile"><span class="emoji">03</span><b>Сағыныш</b><br><span class="small">Алыста жүрген күндер де біздің тарихымыздың бір бөлігі.</span></div>
+<div class="tile"><span class="emoji">04</span><b>Қолдау</b><br><span class="small">Жақсы күнде де, қиын күнде де бір-бірімізді түсінуге тырыстық.</span></div>
+<div class="tile"><span class="emoji">05</span><b>Естеліктер</b><br><span class="small">Фото, әңгіме, күлкі, кездесулер — бәрі өз орнын қалдырды.</span></div>
+<div class="tile"><span class="emoji">06</span><b>Қиын сәттер</b><br><span class="small">Әр нәрсе мінсіз бола бермеді. Бірақ қателіктер де бізге бір нәрсе үйретті.</span></div>
+<div class="tile"><span class="emoji">07</span><b>Бүгін</b><br><span class="small">Бүгін — 1 жыл 2 ай. Сондықтан осы күнді жай өткізіп жібергім келмеді.</span></div>
+<div class="tile"><span class="emoji">08</span><b>Әрі қарай</b><br><span class="small">Қалған беттерін уақыттың өзі жазады. Ең бастысы — бір-бірімізді құрметтеу.</span></div>
+</div>
+<div class="final">
+<h2>🥹❤️ Саған</h2>
+<p>14 айды бір ғана мәтінмен түсіндіру қиын.</p>
+<p>Мен сенен қазір бірден күліп, бірден кешіріп, бәрін ұмытып кетуді сұрамаймын.</p>
+<p><b>Тек бүгінгі күніміздің маңызын сезсең болғаны.</b></p>
+<p>1 жыл 2 айымыз құтты болсын. 🤍</p>
+</div>
+</div></section>
+
+<section id="chat" class="screen"><div class="card">
+<button class="back" onclick="show('home')">← Артқа</button>
+<h2>💬 Біздің чат</h2><p class="muted">Кейбір сөздерді кейде экран арқылы айту оңайырақ.</p>
+<div class="chat">
+<div class="msg me">Бір нәрсе көрсеткім келіп тұр...</div>
+<div class="msg her">Не? 🥹</div>
+<div class="msg me">Жәй ғана соңына дейін қарап шықшы 🤍</div>
+<div class="msg her">Жақсы, қараймын.</div>
+<div class="msg me">Біздің арамыздағы әрбір жақсы сәт мен үшін маңызды.</div>
+<div class="msg me">Ал қателескен кездерім маған бір нәрсені түсіндірді: адамды ренжітіп алмауға көбірек мән беру керек.</div>
+<div class="msg me">Сондықтан бұл жердің мақсаты — сені қинау емес, кішкентай болса да күлімдету. 🫶🏻</div>
+<div class="msg me">Қалғанын төмендегі бөлімдерден көресің 🤍</div>
+</div>
+</div></section>
+
+<section id="memories" class="screen"><div class="card">
+<button class="back" onclick="show('home')">← Артқа</button>
+<h2>📸 Естеліктер</h2><p>Екі адамның екі бөлек суреті де бір тарихтың бөлігі.</p>
+<div class="memories">
+<div class="memory">
+<img src="photo_girl.jpeg" alt="Естелік">
+<div><b>01 — Сен</b><br><span class="muted">Сенің бір ғана суретіңнің өзі осы бөлімді жылытып тұр. 🤍</span></div>
+</div>
+<div class="memory">
+<img src="photo_boy.jpeg" alt="Естелік">
+<div><b>02 — Мен</b><br><span class="muted">Ал мына жақта осы кішкентай сыйлықты дайындаған адам. 🙂</span></div>
+</div>
+</div>
+<div class="final"><b>«Фотолар көп болуы мүмкін, бірақ кейбір адамдардың орны біреу-ақ.»</b> 🥹</div>
+</div></section>
+
+<section id="box" class="screen"><div class="card">
+<button class="back" onclick="show('home')">← Артқа</button>
+<div class="boxWrap">
+<h2>🎁 Виртуалды сыйлық қорабы</h2>
+<p>Қорапты ашып көр...</p>
+<button onclick="openBox()" class="tile" style="width:100%"><div id="boxIcon" class="box">🎁</div><b>Ашу</b></button>
+<div id="gift" class="gift">
+<h2>💐 Гүл</h2><p>«Кейде үлкен сыйлық керек емес. Адамға оның ойланғанын сезіну жеткілікті.»</p>
+<hr style="border-color:#ffffff18">
+<h2>🍫 Шоколад</h2><p>«Бүгін көңілің сәл тәттірек болсын.»</p>
+<hr style="border-color:#ffffff18">
+<h2>💌 Хат</h2><p>«Сенен мінсіз болуды күтпеймін. Тек өзің болып жүрсең болды. Ал мен өз қателерімді түсініп, жақсырақ болуға тырысамын.»</p>
+<hr style="border-color:#ffffff18">
+<h2>🧸 Кішкентай құшақ</h2><p>«Бұл экранның ар жағындағы виртуалды нұсқасы ғана. Бірақ ниеті шынайы. 🤍»</p>
+<hr style="border-color:#ffffff18">
+<h2>💗 Ең маңызды сыйлық</h2><p>«Сенің кешіріміңді сатып алуға болмайды. Сондықтан бұл жердегі ештеңе сені міндеттемейді. Мен тек саған бүгінгі күннің мен үшін маңызды екенін көрсеткім келді.»</p>
+</div>
+</div>
+</div></section>
+
+<section id="mood" class="screen"><div class="card">
+<button class="back" onclick="show('home')">← Артқа</button>
+<h2>🌙 Қазір көңіл-күйің қандай?</h2>
+<p>Біреуін бас. Мұнда дұрыс немесе бұрыс жауап жоқ.</p>
+<div class="moods">
+<button onclick="mood('sad')">😔 Көңілім жоқ</button>
+<button onclick="mood('cry')">🥹 Жылағым келіп тұр</button>
+<button onclick="mood('empty')">😶 Ештеңе сезгім келмейді</button>
+<button onclick="mood('happy')">😊 Кішкене күлгім келеді</button>
+<button onclick="mood('talk')">❤️ Сөйлескім келеді</button>
+</div>
+<div id="moodResult" class="moodResult">Мұнда сен таңдаған жауапқа арналған кішкентай хабарлама шығады 🤍</div>
+</div></section>
+
+<script>
+const PASSWORD="2807";
+function unlock(){
+ const p=document.getElementById('pass').value.trim();
+ if(p===PASSWORD){show('home');}
+ else document.getElementById('err').textContent="Құпия сөз дұрыс емес 🙂";
+}
+document.getElementById('pass').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
+function show(id){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo(0,0);
+}
+function openBox(){
+ document.getElementById('boxIcon').classList.add('open');
+ document.getElementById('boxIcon').textContent='🎀';
+ document.getElementById('gift').classList.add('show');
+}
+function mood(type){
+ const t={
+ sad:"Бүгін бәрін бірден шешудің қажеті жоқ. Аздап демал, өзіңе жұмсақ бол. 🤍",
+ cry:"Жылағың келсе, сезіміңді жасыру міндетті емес. Асықпай өзіңе уақыт бер. 🥹🤍",
+ empty:"Қазір ештеңе істегің келмесе де болады. Бірнеше минут тыныш отырудың өзі жеткілікті. 🌙",
+ happy:"Онда кішкентай миссия: бүгін кемінде бір рет шын күліп көр. 😊",
+ talk:"Егер сөйлескің келсе, сөзіңді іште ұстап қалма. Жаныңдағы сенімді адаммен сөйлескен дұрыс. ❤️"
+ };
+ document.getElementById('moodResult').innerHTML='<b>'+t[type]+'</b><br><br><span class="small">Бұл бөлім сені ештеңеге мәжбүрлемейді. Тек көңіліңе кішкентай орын қалдырылған. 🤍</span>';
+}
+</script>
+</body>
+</html>
